@@ -41,40 +41,14 @@ app.use('/api/login', loginRouter)
 app.use('/api/users', usersRouter)
 app.use('/articles', reqArticleRouter)
 app.use('/api/articles', articleRouter)
-// app.use('/', indexRouter)
-// app.use('/users', usersRouter)
 
-// // catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   next(createError(404))
-// })
 
-// // error handler
-// app.use(function(err, req, res, next) {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message
-//   res.locals.error = req.app.get('env') === 'development' ? err : {}
+app.get('/health', (req, res) => {
+    res.send('ok')
+})
 
-//   // render the error page
-//   res.status(err.status || 500)
-//   res.render('error')
-// })
-
-app.get('/', (req, res) => {
-    res.send('this is a response')
-    // var query = req.params.query
-    // var data = new Model({
-    //   'Title': req.params.title,
-    //   'Author': req.params.Author,
-    //   'Link': req.params.Text,
-    //   'Text': req.params.Text,
-    // }).save(function(err, result) {
-    //   if (err) throw err
-    //   if (result) {
-    //     res.json(result)
-    //   }
-    // })
-
+app.get('/version', (req, res) => {
+    res.send('1') // change this string to ensure a new version deployed
 })
 
 app.use(middleware.unknownEndpoint)
@@ -87,8 +61,6 @@ app.use((err, req, res) => {
     res.status(status)
     res.render('error')
 })
-
-
 
 
 module.exports = app
